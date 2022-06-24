@@ -1,15 +1,21 @@
 package singlelinkedlist;
 import java.util.Scanner;
 public class InsertAtEnd {
-     Node insertend(Node temp)
+      void insertend(Node head)
      {
+    	  Node temp=new Node();
+    	  temp=head;
+    	  while(temp.next!=null)
+    	  {
+    		  temp=temp.next;
+    	  }
     	 Scanner sc=new Scanner(System.in);
-    	 System.out.println("Enter Element you want to insert At end:");
+    	 System.out.println("Enter element");
     	 int data=sc.nextInt();
     	 Node n=new Node(data);
     	 n.next=null;
     	 temp.next=n;
-    	 temp=n;
-    	 return temp;
+    	
+    	 
      }
 }

@@ -1,12 +1,11 @@
 package singlelinkedlist;
 public class DeleteAtPositon {
-   Node deleteatpos(Node head,int pos)
+   void deleteatpos(Node head,int pos)
    { 
 
 	   Node start=new Node();
 	   start=head;
 	   Node temp=new Node();
-	   temp=null;
 	   int i=1;
 	   while(i<pos)
 	   {
@@ -15,6 +14,6 @@ public class DeleteAtPositon {
 		   i++;
 	   }
 	   temp.next=start.next; 
-	   return head;
+	 
    }
 }

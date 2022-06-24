@@ -1,22 +1,17 @@
 package singlelinkedlist;
 
 public class DeleteAtEnd {
-	Node deleteatend(Node head,Node temp)
+	void deleteatend(Node head)
 	{
 		Node start=new Node();
 		start=head;
-		Node tt=new Node();
-		tt=null;
+		Node temp=new Node();
 		while(start.next!=null)
 		{
-			tt=start;
+			temp=start;
 			start=start.next;
-			
 		}
-		tt.next=null;
-		temp=tt;
-		
-		return temp;
+		temp.next=null;	
 	}
 
 }

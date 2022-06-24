@@ -1,5 +1,7 @@
 package singlelinkedlist;
 import java.util.Scanner;
+
+import doublylinkedlist.DeleteAtPos;
 public class Node {
         int data;
         Node next;
@@ -27,11 +29,9 @@ public class Node {
     }
 
 class Main{
-	public static void main(String[] args)
+	public static Node element(int n)
 	{
-	     Scanner sc=new Scanner(System.in);
-	     System.out.println("Enter How many times you want to insert data");
-	     int n=sc.nextInt();
+	    Scanner sc=new Scanner(System.in);
 	     int i=1;
 	     Node head=new Node();
 	     head=null;
@@ -39,7 +39,7 @@ class Main{
 	     temp=null;
 	    
 	     do {
-	    	 System.out.println("Enter element you want to insert in linked list");
+	    	 System.out.println("Enter element");
 	    	 int data=sc.nextInt();
 	    	 Node n1=new Node(data);
 	    	 n1.next=null;
@@ -53,80 +53,140 @@ class Main{
 	    	 }
 	    	 i++;
 	     }while(i<=n);
-	     temp.traverse(head);
-	     System.out.println("Enter position Where you want to insert the element:");
-	     int pos=sc.nextInt();
-	     if(pos>n || pos<1)
+	     return head;
+	}
+	public static void main(String[] args)
+	{
+		int one=0;
+	     Scanner sc=new Scanner(System.in);
+	     System.out.println("Enter How many times you want to insert data");
+	     int n=sc.nextInt();
+	     Node head=new Node();
+	     head= element(n);
+	     do {
+	     System.out.println("------------");
+	     System.out.println("Enter 1 to insert at Begining");
+	     System.out.println("Enter 2 to insert at End");
+	     System.out.println("Enter 3 to insert at position:");
+	     System.out.println("Enter 4 to Delete at Begining");
+	     System.out.println("Enter 5 to Delete at End");
+	     System.out.println("Enter 6 to Delete at Position:");
+	     System.out.println("Enter 0to Exit:");
+	     System.out.println("---------------");
+	     System.out.println("Enter your choice");
+	     int choice=sc.nextInt();
+	     switch(choice)
 	     {
-	    	 System.out.println("Invalid Position:");
+	     case 1:
+	     {
+	         InsertAtBegining obj=new InsertAtBegining();
+			 head=obj.insert(head);
+			 head.traverse(head);
+			 n++;
+			 break;
 	     }
-	     if(pos==1)
+	     case 2:
 	     {
-	     InsertAtBegining obj=new InsertAtBegining();
-		 head=obj.insert(head);
-		 
-		 temp.traverse(head);
-		 n++;
+	    	InsertAtEnd obj2=new InsertAtEnd();
+	 		obj2.insertend(head);
+	 		head.traverse(head);
+	 		n++;
+	 		break;
 	     }
-	     else if(pos==n)
+	     case 3:
 	     {
-	     InsertAtEnd obj2=new InsertAtEnd();
-		temp= obj2.insertend(temp);
-		temp.traverse(head);
-		n++;
+	    	 System.out.println("Enter position:");
+	    	 int pos=sc.nextInt();
+	    	 if(pos>n ||pos<1)
+	    	 {
+	    		 System.out.println("invalid position:");
+	    	 }
+	    	 else if(pos==1)
+	    	 {
+	    		 InsertAtBegining obj=new InsertAtBegining();
+				 head=obj.insert(head);
+				 head.traverse(head);
+				 n++;	 
+	    	 }
+	    	 else if(pos==n)
+	    	 {
+	    			InsertAtEnd obj=new InsertAtEnd();
+	    	 		obj.insertend(head);
+	    	 		head.traverse(head);
+	    	 		n++;
+	    	 }
+	    	 else
+	    	 {
+	    		 InsertAtPosition obj=new InsertAtPosition();
+	    		 obj.insertatpos(head, pos);
+	    		 head.traverse(head);
+	    		 n++;
+	    	 }
+	    	 break;
 	     }
-	     
-	     else
+	     case 4:
 	     {
-	    	 InsertAtPosition obj3=new InsertAtPosition();
-	    	 head=obj3.insertatpos(head, pos);
-	    	 temp.traverse(head);
+	    	 DeleteAtBegining obj=new DeleteAtBegining();
+	    	 head=obj.deleteatbegin(head);
+	    	 head.traverse(head);
 	    	 n++;
+	    	 break;
 	     }
-	     System.out.println("Enter position form where you want to delete");
-	     int delpos=sc.nextInt();
-	     if(delpos>n || delpos<1)
+	     case 5:
 	     {
-	    	 System.out.println("Invalid Position:");
+	    	 DeleteAtEnd obj=new DeleteAtEnd();
+	    	 obj.deleteatend(head);
+	    	 n--;
+	    	 head.traverse(head);
+	    	 break;
 	     }
-	     else if(delpos==1)
+	     case 6:
 	     {
-	     DeleteAtBegining obj4=new DeleteAtBegining();
-	      head=obj4.deleteatbegin(head);
-	      temp.traverse(head);
-	      n--;
-	      }
-	     if(delpos==n)
-	     {
-	    	 DeleteAtEnd obj5=new DeleteAtEnd();
-	    	 temp=obj5.deleteatend(head, temp);
-	    	  temp.traverse(head);
-	    	  n--;
+	    	 System.out.println("Enter position:");
+	    	 int pos=sc.nextInt();
+	    	 if(pos>n ||pos<1)
+	    	 {
+	    		 System.out.println("invalid Position:");
+	    	 }
+	    	 else if(pos==1)
+	    	 {
+	    		 DeleteAtBegining obj=new DeleteAtBegining();
+		    	 head=obj.deleteatbegin(head);
+		    	 head.traverse(head);
+		    	 n++;
+	    	 }
+	    	 else if(pos==n)
+	    	 {
+	    		 DeleteAtEnd obj=new DeleteAtEnd();
+		    	 obj.deleteatend(head);
+		    	 n--;
+		    	 head.traverse(head); 
+	
+	    	 }
+	    	 else
+	    	 {
+	    		 DeleteAtPositon obj=new DeleteAtPositon();
+	    		 obj.deleteatpos(head, pos);
+	    		 head.traverse(head);
+	    		 n--;
+	    		 
+	    	 }
+	    	 break;
 	     }
-	     else
+	     case 0:
 	     {
-	    	 DeleteAtPositon obj6=new DeleteAtPositon();
-	    	head= obj6.deleteatpos(head, delpos);
-	    	temp.traverse(head);
-	    	n--;
-	    	 
+	    	 break;
 	     }
-	     System.out.println("Enter element you want to search");
-	     int find=sc.nextInt();
-	     Search obj7=new Search();
-	      int n1=obj7.search(head, find);
-	      if(n1==0)
-	      {
-	    	  System.out.println("Element not found");
-	      }
-	      else
-	      {
-	    	  System.out.println("Element found at Location="+n1);
-	      }
-	      
+	    
+	     default:
+	     {
+	    	 System.out.println("Invalid input:");
+	     }
+	     }
+	     System.out.println("Enter 1 to continue...");
+	     one=sc.nextInt();
+	     }while(one==1); 
 	     
 	     
 	}
-
-
 }
