@@ -4,6 +4,7 @@ public class Node {
 	int data;
 	Node prev;
 	Node next;
+	Node(){}
 	Node(int data)
 	{
 		this.data=data;
@@ -56,6 +57,63 @@ class Main{
 			i++;
 				
 		}while(i<=n);
+		System.out.println("Enter positon where you want to insert:");
+		int pos=sc.nextInt();
+		if(pos>n ||pos<1)
+		{
+			System.out.println("Invalid position:");
+			
+		}
+		else if(pos==1)
+		{
+		InsertAtBegining obj=new InsertAtBegining();
+		head=obj.insert(head);
 		temp.traverse(head);
+		n++;
+		}
+		else if(pos==n)
+		{
+			InsertAtEnd obj=new InsertAtEnd();
+			temp=obj.insertend(temp);
+			n++;
+			temp.traverse(head);
+		}
+		else {
+			InsertAtPos obj=new InsertAtPos();
+			head=obj.insertpos(head, pos);
+			temp.traverse(head);
+               
+		     }
+		System.out.println("Enter pos from where you want to delete:");
+		int del=sc.nextInt();
+		if(del>n ||del<1)
+		{
+			System.out.println("Invalid Position:");
+		}
+		else if(del==1)
+		{
+		DeleteAtBegining obj=new DeleteAtBegining();
+		head=obj.deletebeg(head);
+		n--;
+		temp.traverse(head);
+		}
+		else if(del==n)
+		{
+			DeleteAtEnd obj=new DeleteAtEnd();
+			temp=obj.deleteend(temp);
+			n--;
+			temp.traverse(head);
+		}
+		else {
+			DeleteAtPos obj=new DeleteAtPos();
+			head=obj.delpos(head, del);
+			n--;
+			temp.traverse(head);
+			
+		}
+		Traversereverse obj=new Traversereverse();
+		obj.treverse(temp);
+		
+		
 	}
 }
