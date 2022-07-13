@@ -63,6 +63,7 @@ class Main{
 	     int n=sc.nextInt();
 	     Node head=new Node();
 	     head= element(n);
+	     try {
 	     do {
 	     System.out.println("------------");
 	     System.out.println("Enter 1 to insert at Begining");
@@ -71,6 +72,9 @@ class Main{
 	     System.out.println("Enter 4 to Delete at Begining");
 	     System.out.println("Enter 5 to Delete at End");
 	     System.out.println("Enter 6 to Delete at Position:");
+	     System.out.println("Enter 7 to Create a Cycle");
+	     System.out.println("Enter 8 to Detect Cycle");
+	     System.out.println("Enter 9 to Remove Cycle");
 	     System.out.println("Enter 0to Exit:");
 	     System.out.println("---------------");
 	     System.out.println("Enter your choice");
@@ -173,8 +177,35 @@ class Main{
 	    	 }
 	    	 break;
 	     }
-	     case 0:
+	     case 7:
 	     {
+	    	 CreateCycle obj=new CreateCycle();
+	    	 obj.createcylce(head);
+	    	 break;
+	    	 
+	     }
+	     case 8:
+	     {
+	    	 DetectCycle obj=new DetectCycle();
+	    	 if((obj.detect(head))==true)
+	    	 {
+	    		 System.out.println("Cycle is present:");
+	    	 }
+	    	 else {
+	    		 System.out.println("Cycle is Not present");
+	    	 }
+	    	 
+	    	 break;
+	    	 
+	     }
+	     case 9:
+	     {
+	    	 RemoveCycle obj=new RemoveCycle();
+	    	 obj.removecycle(head);
+	    	 head.traverse(head);
+	    	 break;
+	     }
+	     case 0:{
 	    	 break;
 	     }
 	    
@@ -185,7 +216,15 @@ class Main{
 	     }
 	     System.out.println("Enter 1 to continue...");
 	     one=sc.nextInt();
+	     if(one!=1)
+	     {
+	    	 System.out.println("----Exit----");
+	     }
 	     }while(one==1); 
+	     }catch(Exception e)
+	     {
+	    	 System.out.println(" ---Thankyou---");
+	     }
 	     
 	     
 	}
